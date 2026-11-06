@@ -13,12 +13,12 @@ fi
 echo "Found AMD GPU at PCI Address: ${AMD_PCI_BUS}"
 
 # Prevent runtime auto-suspend / sleep mode
-echo "on" | tee "/sys/bus/pci/devices/${AMD_PCI_BUS}/power/control"
+echo "on" |sudo tee "/sys/bus/pci/devices/${AMD_PCI_BUS}/power/control"
 
 # Block D3cold deep power-saving state (power cutoff)
-echo "0" | tee "/sys/bus/pci/devices/${AMD_PCI_BUS}/d3cold_allowed"
+echo "0" |sudo tee "/sys/bus/pci/devices/${AMD_PCI_BUS}/d3cold_allowed"
 
 # Lock driver DPM performance level to maximum
-echo "high" | tee "/sys/bus/pci/devices/${AMD_PCI_BUS}/power_dpm_force_performance_level"
+echo "high" |sudo tee "/sys/bus/pci/devices/${AMD_PCI_BUS}/power_dpm_force_performance_level"
 
 echo "AMD GPU at ${AMD_PCI_BUS} successfully locked to maximum performance!"
